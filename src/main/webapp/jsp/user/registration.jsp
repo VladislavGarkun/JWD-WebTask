@@ -1,40 +1,55 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
-    <link rel="stylesheet" type="text/css" href="css/registration.css">
+    <meta charset="UTF-8">
+    <title>registration</title>
+    <style>
+        <%@include file="/css/registration.css"%>
+    </style>
 </head>
+
 <body>
-    <div id="reg">
-        <form action="Controller" method="post">
-            <label for="firstname">firstname</label>
-            <input type="text" firstname="firstname" placeholder="Enter first name" id="firstname"><br><br>
-
-            <label for="lastname">lastname</label>
-            <input type="text" lastname="lastname" placeholder="Enter last name" id="lastname"><br><br>
-
-            <label for="phoneNumber">phoneNumber</label>
-            <input type="phoneNumber" phoneNumber="phoneNumber" placeholder="Enter phone number" id="phoneNumber"><br><br>
-
-            <label for="login">login</label>
-            <input type="text" login="login" placeholder="Enter login" id="login"><br><br>
-
-            <label for="password_1">password</label>
-            <input type="password_1" password_1="password_1" placeholder="Enter password" id="password_1"><br><br>
-
-            <label for="password_2">repeat password</label>
-            <input type="password_2" password_2="password_2" placeholder="Repeat password" id="password_2"><br><br>
-
-            <label for="dateOfBirth">birth date</label>
-            <input type="dateOfBirth" dateOfBirth="dateOfBirth" placeholder="Enter birth date" id="dateOfBirth"><br><br>
-
-            <label for="numberOfPassport">passport number</label>
-            <input type="text" numberOfPassport="numberOfPassport" placeholder="Enter passport number" id="numberOfPassport"><br><br>
-
-            <div class="form-group">
-                <button type="submit" name="command" value="registration" class="btn btn-outline-primary sign-up">Sign Up</button>
-            </div>
-        </form>
-    </div>
+    <form action="Controller" method="post">
+        <h1 title="Registration form">Registration</h1>
+        <div class="group">
+            <label for="">Name:</label>
+            <input type="text" name="name">
+        </div>
+        <div class="group">
+            <label for="">Surname:</label>
+            <input type="text" name="surname">
+        </div>
+        <div class="group">
+            <label for="">Phone number:</label>
+            <input type="tel" name="phoneNumber">
+        </div>
+        <div class="group">
+            <label for="">Login:</label>
+            <input type="text" name="login">
+        </div>
+        <div class="group">
+            <label for="">Password:</label>
+            <input type="password" name="password_1">
+        </div>
+        <div class="group">
+            <label for="">Repeat password:</label>
+            <input type="password" name="password_2">
+        </div>
+        <div class="group">
+            <label for="">Birth date:</label>
+            <input type="text" name="birthDate">
+        </div>
+        <div class="group">
+            <label for="">Passport number:</label>
+            <input type="text" name="passportNumber">
+        </div>
+        <div class="group">
+            <center><button type="submit" name="command" value="registration">Registration</button></center>
+        </div>
+        <div class="group">
+            <c:out value="${message}"/>
+        </div>
+    </form>
 </body>
 </html>

@@ -8,10 +8,16 @@
 </head>
 <body>
 <form class="header" action="Controller" method="post">
-<div class="button_group" role="group" aria-label="Basic example">
-    <button class="button_group_sign_in" type="submit" name = "command" value="loadauthorizationpage">Sign in</button>
-    <button class="button_group_sign_up" type="submit" name = "command" value="loadregistrationpage">Sign up</button>
-</div>
+    <div class="main-container">
+        <nav class="navbar navbar-light">
+            <form class="header" action="Controller" method="post">
+                <div class="btn-group buttons" role ="grop" aria-label="Basic Example">
+                    <button class="btn btn-primary sign-in" type="submit" name="command" value="loadauthpage">Sign in</button>
+                    <button class="btn btn-primary sign-up" type="submit" name = "command" value="loadregistrationpage">Sign up</button>
+                </div>
+            </form>
+        </nav>
+    </div>
 </form>
 </body>
 </html>

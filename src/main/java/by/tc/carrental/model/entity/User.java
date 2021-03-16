@@ -12,6 +12,11 @@ public class User {
     private String numberOfPassport;
     //private String drivingLicense;
 
+    public User(String login, String password){
+        this.login = login;
+        this.password = password;
+    }
+
     public User(String firstName, String lastName, String phoneNumber, String login, String password, String dateOfBirth, String numberOfPassport){
         this.firstName = firstName;
         this.lastName = lastName;

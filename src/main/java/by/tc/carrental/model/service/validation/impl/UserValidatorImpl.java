@@ -14,7 +14,7 @@ public class UserValidatorImpl implements UserValidator {
     private static final String EMPTY_PASSWORD = "Enter password!";
     private static final String SHORT_PASSWORD = "The password is too short!";
     private static final String LONG_PASSWORD = "The password is too long!";
-    private static final String LONG_USERNAME = "The username is too long!";
+    private static final String LONG_NAME = "The username is too long!";
     private static final String INVALID_NAME = "name must contain only letters and numbers!";
     private static final String INVALID_LOGIN = "Invalid format of login!";
 
@@ -55,7 +55,7 @@ public class UserValidatorImpl implements UserValidator {
         }
 
         if(user.getFirstName().length() > MAX_LENGTH) {
-            throw new ServiceException(LONG_USERNAME);
+            throw new ServiceException(LONG_NAME);
         }
 
         Pattern usernamePattern = Pattern.compile(CHARACTERS_AND_NUMBERS);

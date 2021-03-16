@@ -13,16 +13,16 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class Registration implements Command {
-    private static final String FIRSTNAME_PARAM = "firstname";
-    private static final String LASTNAME_PARAM = "lastname";
+    private static final String FIRSTNAME_PARAM = "name";
+    private static final String LASTNAME_PARAM = "surname";
     private static final String PHONE_NUMBER = "phoneNumber";
     private static final String LOGIN_PARAM = "login";
     private static final String PASSWORD_PARAM = "password_1";
-    private static final String DATE_OF_BIRTH_PARAM = "dateOfBirth";
-    private static final String NUMBER_OF_PASSPORT_PARAM = "numberOfPassport";
+    private static final String DATE_OF_BIRTH_PARAM = "birthDate";
+    private static final String NUMBER_OF_PASSPORT_PARAM = "passportNumber";
 
     private static final String LOAD_MAIN_PAGE = "Controller?command=loadmainpage";
-    private static final String REG_PAGE_PATH = "/jsp/user/registration.jsp";
+    private static final String REGISTRATION_PAGE_PATH = "/jsp/user/registration.jsp";
 
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
@@ -48,7 +48,7 @@ public class Registration implements Command {
         catch(ServiceException e)
         {
             request.setAttribute("message", e.getMessage());
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher(REG_PAGE_PATH);
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher(REGISTRATION_PAGE_PATH);
             requestDispatcher.forward(request, response);
         }
     }
