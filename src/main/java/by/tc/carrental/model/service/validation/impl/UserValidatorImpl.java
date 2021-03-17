@@ -8,80 +8,50 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class UserValidatorImpl implements UserValidator {
-    private static final String EMPTY_NAME = "Enter name!";
-    private static final String EMPTY_PHONE = "Enter phone number";
-    private static final String EMPTY_LOGIN = "Enter login!";
-    private static final String EMPTY_PASSWORD = "Enter password!";
-    private static final String SHORT_PASSWORD = "The password is too short!";
-    private static final String LONG_PASSWORD = "The password is too long!";
-    private static final String LONG_NAME = "The username is too long!";
-    private static final String INVALID_NAME = "name must contain only letters and numbers!";
-    private static final String INVALID_LOGIN = "Invalid format of login!";
-
-    private static final String CHARACTERS_AND_NUMBERS = "[A-Z0-9]+";
+    private static final String CHAR_AND_NUM = "[A-Z0-9]+";
     private static final String EMAIL_FORMAT = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$";
-
     private static final int MIN_LENGTH = 6;
     private static final int MAX_LENGTH = 30;
 
     @Override
     public boolean checkAuthData(User user) throws ServiceException {
-        if(user.getFirstName().isEmpty() || user.getFirstName() == null) {
-            throw new ServiceException(EMPTY_NAME);
+        if (user.getLogin().isEmpty() || user.getLogin() == null) {
+            throw new ServiceException(ValidationErrors.EMPTY_USERNAME.getTitle());
         }
-
-        if(user.getLastName().isEmpty() || user.getLastName() == null) {
-            throw new ServiceException(EMPTY_NAME);
+        if (user.getPassword().isEmpty() || user.getPassword() == null) {
+            throw new ServiceException(ValidationErrors.EMPTY_PASSWORD.getTitle());
         }
-
-        if(user.getPhoneNumber().isEmpty() || user.getPhoneNumber() == null) {
-            throw new ServiceException(EMPTY_NAME);
+        if (user.getPassword().length() < MIN_LENGTH) {
+            throw new ServiceException(ValidationErrors.SHORT_PASSWORD.getTitle());
         }
-
-        if(user.getLogin().isEmpty() || user.getLogin() == null) {
-            throw new ServiceException(EMPTY_NAME);
+        if (user.getPassword().length() > MAX_LENGTH) {
+            throw new ServiceException(ValidationErrors.LONG_PASSWORD.getTitle());
         }
-
-        if(user.getPassword().isEmpty() || user.getPassword() == null) {
-            throw new ServiceException(EMPTY_PASSWORD);
+        if (user.getLogin().length() > MAX_LENGTH) {
+            throw new ServiceException(ValidationErrors.LONG_USERNAME.getTitle());
         }
+        Pattern usernamePattern = Pattern.compile(CHAR_AND_NUM);
+        Matcher usernameMatcher = usernamePattern.matcher(user.getLogin());
 
-        if(user.getPassword().length() < MIN_LENGTH) {
-            throw new ServiceException(SHORT_PASSWORD);
-        }
-
-        if(user.getPassword().length() > MAX_LENGTH) {
-            throw new ServiceException(LONG_PASSWORD);
-        }
-
-        if(user.getFirstName().length() > MAX_LENGTH) {
-            throw new ServiceException(LONG_NAME);
-        }
-
-        Pattern usernamePattern = Pattern.compile(CHARACTERS_AND_NUMBERS);
-        Matcher usernameMatcher = usernamePattern.matcher(user.getFirstName());
-
-        if(!usernameMatcher.find()) {
-            throw new ServiceException(INVALID_NAME);
+        if (!usernameMatcher.find()) {
+            throw new ServiceException(ValidationErrors.INVALID_USERNAME.getTitle());
         }
 
         return true;
     }
 
+    @Override
     public boolean checkRegData(User user) throws ServiceException {
-        if(checkAuthData(user)) {
+        if (checkAuthData(user)) {
             if(user.getLogin().isEmpty() || user.getLogin() == null) {
-                throw new ServiceException(EMPTY_LOGIN);
+                throw new ServiceException(ValidationErrors.EMPTY_EMAIL.getTitle());
             }
-
             Pattern emailPattern = Pattern.compile(EMAIL_FORMAT);
             Matcher emailMatcher = emailPattern.matcher(user.getLogin());
-
-            if(!emailMatcher.find()) {
-                throw new ServiceException(INVALID_LOGIN);
+            if(!emailMatcher.find()){
+                //throw new ServiceException(ValidationErrors.INVALID_EMAIL.getTitle());
             }
         }
-
         return true;
     }
 }

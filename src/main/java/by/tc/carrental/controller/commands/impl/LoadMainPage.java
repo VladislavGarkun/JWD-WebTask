@@ -14,6 +14,7 @@ public class LoadMainPage implements Command {
     private static final String MAIN_PAGE_PATH = "/jsp/user/main_page.jsp";
     private static final String ERROR_PAGE_PATH = "/jsp/error_page_global.jsp";
 
+    @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         ServiceProvider serviceProvider = ServiceProvider.getInstance();
 

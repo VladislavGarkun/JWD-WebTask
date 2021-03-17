@@ -3,7 +3,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>registration</title>
+    <title>Registration</title>
     <style>
         <%@include file="/css/registration.css"%>
     </style>
@@ -51,5 +51,6 @@
             <c:out value="${message}"/>
         </div>
     </form>
+    <script src="${pageContext.request.contextPath}/js/registration.js"></script>
 </body>
 </html>

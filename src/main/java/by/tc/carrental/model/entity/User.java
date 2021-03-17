@@ -27,6 +27,14 @@ public class User {
         this.numberOfPassport = numberOfPassport;
     }
 
+    public User(String firstName, String lastName, String phoneNumber, String login, String password){
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.login = login;
+        this.password = password;
+    }
+
     public String getLogin(){
         return login;
     }

@@ -11,6 +11,7 @@ import java.io.IOException;
 public class LoadRegistrationPage implements Command {
     private static final String REGISTRATION_PAGE_PATH = "/jsp/user/registration.jsp";
 
+    @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher(REGISTRATION_PAGE_PATH);

@@ -24,6 +24,7 @@ public class Registration implements Command {
     private static final String LOAD_MAIN_PAGE = "Controller?command=loadmainpage";
     private static final String REGISTRATION_PAGE_PATH = "/jsp/user/registration.jsp";
 
+    @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
         String firstname = request.getParameter(FIRSTNAME_PARAM);
@@ -38,15 +39,12 @@ public class Registration implements Command {
         ServiceProvider serviceProvider = ServiceProvider.getInstance();
         UserService userService = serviceProvider.getUserService();
 
-        try
-        {
-            if(userService.registration(user))
-            {
+        try {
+            if(userService.registration(user)) {
                 response.sendRedirect(LOAD_MAIN_PAGE);
             }
         }
-        catch(ServiceException e)
-        {
+        catch(ServiceException e) {
             request.setAttribute("message", e.getMessage());
             RequestDispatcher requestDispatcher = request.getRequestDispatcher(REGISTRATION_PAGE_PATH);
             requestDispatcher.forward(request, response);

@@ -1,21 +1,30 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
+    <meta charset="UTF-8">
     <title>Authorization</title>
-    <link rel="stylesheet" type="text/css" href="../../css/authorization.css">
+    <style>
+        <%@include file="/css/authorization.css" %>
+    </style>
 </head>
 
 <body>
-    <div id="auth">
-        <form action="Controller" method="post">
-            <label for="login">login</label>
-            <input type="text" login="login" placeholder="Enter login" id="login"><br><br>
-
-            <label for="password">password</label>
-            <input type="password" password="password" placeholder="Enter password" id="password"><br><br>
-
-            <input type="submit" button_1="submit" id="submit">
-        </form>
+<form action="Controller" method="get">
+    <h1 title="Authorization form">Authorization</h1>
+    <div class="group">
+        <label for ="">Login:</label>
+        <input type="text" name="login">
     </div>
+    <div class="group">
+        <label for ="">Password:</label>
+        <input type="password" name="password">
+    </div>
+    <div class="group">
+        <center><button type="submit" name="command" value="authorization">Sign in</button></center>
+    </div>
+    <div class="group">
+        <c:out value="${message}"/>
+    </div>
+</form>
 </body>
 </html>
