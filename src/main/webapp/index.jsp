@@ -6,6 +6,6 @@
     <title>JSP - Hello World</title>
 </head>
 <body>
-<c:redirect url="Controller?command=loadmainpage"/>
+<c:redirect url="Controller?command=loadfirstpage"/>
 </body>
 </html>

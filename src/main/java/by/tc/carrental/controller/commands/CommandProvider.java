@@ -4,16 +4,18 @@ import by.tc.carrental.controller.commands.impl.*;
 
 import java.util.HashMap;
 
+import static by.tc.carrental.controller.commands.CommandName.LOGOUT;
+
 public class CommandProvider {
     private HashMap<CommandName, Command> commands = new HashMap<>();
 
     public CommandProvider() {
+        commands.put(CommandName.LOADFIRSTPAGE, new LoadFirstPage());
         commands.put(CommandName.LOADMAINPAGE, new LoadMainPage());
-        commands.put(CommandName.LOADREGISTRATIONPAGE, new LoadRegistrationPage());
-        commands.put(CommandName.LOADAUTHORIZATIONPAGE, new LoadAuthorizationPage());
         commands.put(CommandName.REGISTRATION, new Registration());
         commands.put(CommandName.AUTHORIZATION, new Authorization());
-
+        commands.put(CommandName.LOGOUT, new LogOut());
+        commands.put(CommandName.LOADPROFILEPAGE, new LoadProfilePage());
     }
 
     public Command takeCommand(String name) {

@@ -1,9 +1,10 @@
 package by.tc.carrental.controller.commands;
 
 public enum CommandName {
+    LOADFIRSTPAGE,
     LOADMAINPAGE,
-    LOADREGISTRATIONPAGE,
-    LOADAUTHORIZATIONPAGE,
+    LOADPROFILEPAGE,
     REGISTRATION,
-    AUTHORIZATION
+    AUTHORIZATION,
+    LOGOUT
 }

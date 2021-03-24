@@ -13,29 +13,31 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class Registration implements Command {
-    private static final String FIRSTNAME_PARAM = "name";
-    private static final String LASTNAME_PARAM = "surname";
+    private static final String NAME_PARAM = "name";
+    private static final String SURNAME_PARAM = "surname";
+    private static final String USERNAME_PARAM = "userName";
     private static final String PHONE_NUMBER = "phoneNumber";
-    private static final String LOGIN_PARAM = "login";
-    private static final String PASSWORD_PARAM = "password_1";
+    private static final String LOGIN_PARAM = "login_2";
+    private static final String PASSWORD_PARAM = "password_2";
     private static final String DATE_OF_BIRTH_PARAM = "birthDate";
     private static final String NUMBER_OF_PASSPORT_PARAM = "passportNumber";
 
     private static final String LOAD_MAIN_PAGE = "Controller?command=loadmainpage";
-    private static final String REGISTRATION_PAGE_PATH = "/jsp/user/registration.jsp";
+    private static final String FIRST_PAGE_PATH = "/jsp/user/first_page.jsp";
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        String firstname = request.getParameter(FIRSTNAME_PARAM);
-        String lastname = request.getParameter(LASTNAME_PARAM);
+        String name = request.getParameter(NAME_PARAM);
+        String surname = request.getParameter(SURNAME_PARAM);
+        String userName = request.getParameter(USERNAME_PARAM);
         String phoneNumber = request.getParameter(PHONE_NUMBER);
         String login = request.getParameter(LOGIN_PARAM);
         String password = request.getParameter(PASSWORD_PARAM);
         String dateOfBirth = request.getParameter(DATE_OF_BIRTH_PARAM);
         String numberOfPassport = request.getParameter(NUMBER_OF_PASSPORT_PARAM);
 
-        User user = new User(firstname, lastname, phoneNumber, login, password, dateOfBirth, numberOfPassport);
+        User user = new User( login, password, name, surname, userName, phoneNumber);
         ServiceProvider serviceProvider = ServiceProvider.getInstance();
         UserService userService = serviceProvider.getUserService();
 
@@ -46,7 +48,7 @@ public class Registration implements Command {
         }
         catch(ServiceException e) {
             request.setAttribute("message", e.getMessage());
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher(REGISTRATION_PAGE_PATH);
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher(FIRST_PAGE_PATH);
             requestDispatcher.forward(request, response);
         }
     }

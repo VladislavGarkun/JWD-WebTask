@@ -14,11 +14,12 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class Authorization implements Command {
-    private static final String LOGIN_PARAM = "login";
-    private static final String PASSWORD_PARAM = "password";
+    private static final String LOGIN_PARAM = "login_1";
+    private static final String PASSWORD_PARAM = "password_1";
     private static final String LOAD_MAIN_PAGE = "Controller?command=loadmainpage";
+    private static final String LOAD_FIRST_PAGE_PATH_WITH_MESSAGE = "Controller?command=loadfirstpage&message=";
     private static final String AUTH_ATTRIBUTE = "authorization";
-    private static final String AUTH_PAGE_PATH = "jsp/user/authorization.jsp";
+    private static final String USER_ATTRIBUTE = "user";
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -35,11 +36,12 @@ public class Authorization implements Command {
             authorizedUser = userService.authorization(user);
             HttpSession httpSession = request.getSession(true);
             httpSession.setAttribute(AUTH_ATTRIBUTE, true);
+            httpSession.setAttribute(USER_ATTRIBUTE, authorizedUser);
             response.sendRedirect(LOAD_MAIN_PAGE);
 
         } catch (ServiceException e) {
             request.setAttribute("message", e.getMessage());
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher(AUTH_PAGE_PATH);
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher(LOAD_FIRST_PAGE_PATH_WITH_MESSAGE);
             requestDispatcher.forward(request, response);
         }
     }

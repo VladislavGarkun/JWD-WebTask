@@ -1,6 +1,19 @@
-#b{
-    width: 200px;
-    height: 100px;
-    margin-left: 1700px;
-    margin-top: 50px;
+body{
+    margin: 0;
+    color: #6a6f8c;
+    background: dodgerblue;
+    font: 600 16px/18px 'Open Sans', sans-serif;
+}
+
+.label_group{
+    color: white;
+    position: absolute;
+    top: 1%;
+    right: 1%;
+}
+
+.button_group_logout{
+    position: absolute;
+    top: 1%;
+    right: 5%;
 }
